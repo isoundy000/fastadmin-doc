@@ -322,7 +322,7 @@ FastAdmin建议运行在PHP5.5及以上版本，因此如果提示网络错误�
 
 ## 安装时提示无法写入application/database.php
 
-造成此问题的原因通常有几下两种情况
+造成此问题的原因通常有以下几种情况
 
 1. `application/database.php`文件没有写入权限，请先查看你的apache或nginx的运行用户，然后修改文件的所有者，再添加上写入的权限，通常情况下需要执行以下命令：
 

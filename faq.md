@@ -6,45 +6,45 @@ order: 12
 
 如果你在使用FastAdmin的过程中发现任何问题,请到问答社区发贴: https://ask.fastadmin.net
 
-## 在FastAdmin中如何开启调试模式？
+## 1. 在FastAdmin中如何开启调试模式？
 
 开启调试模式的方法有两种：
 
-1、打开`application/config.php`，找到`app_debug`,将它的值置为`true`即可
+* 打开`application/config.php`，找到`app_debug`,将它的值置为`true`即可
 
-2、如果你有启用`.env`环境配置，修改其中`app_debug`的值为`true`即可。
+* 如果你有启用`.env`环境配置，修改其中`app_debug`的值为`true`即可。
 
-## 为什么在调试模式下功能正常，但在生产环境下功能失效
+## 2. 为什么在调试模式下功能正常，但在生产环境下功能失效
 
 如果你有修改了框架核心的JS文件或者修改了核心样式文件，需要使用命令重新压缩打包JS和CSS后才会在生产环境下生效，具体请参考：https://doc.fastadmin.net/docs/command.html#一键压缩打包-3 
 
-## 为什么在外网访问后台速度非常慢
+## 3. 为什么在外网访问后台速度非常慢
 
 如果你在外网开启了调试模式，因为在调试模式下加载的文件非常多，访问速度会非常慢，请在外网或生产环境下关闭调试模式。如果有更高的响应要求，建议采用CDN部署静态资源。部署方式请参考：[#如何将静态资源采用CDN方式部署到第三方云存储-13](#如何将静态资源采用CDN方式部署到第三方云存储-13) 
 
-## 如何启用后台管理多级菜单功能
+## 4. 如何启用后台管理多级菜单功能
 
 FastAdmin从`1.0.0.20180513_beta`版本开始新增了多级菜单功能，开发者可以很方便的在配置文件中修改是否开启多级菜单功能，找到`application/config.php`文件最下方有个`multiplenav`配置，默认是`false`，如果需要启用，请将`multiplenav`置为`true`即可。
 
 如果启用了多级菜单后，菜单规则中的第一级将作为一级菜单显示在顶部。我们可以在`权限管理`->`菜单规则`中额外添加一级菜单，然后再重新规划我们的菜单。
 
-## 为什么我下载的FastAdmin没有头像首字母功能
+## 5. 为什么我下载的FastAdmin没有头像首字母功能
 
 头像首字母功能从`1.0.0.20190410_beta`才新加的功能，如果你使用旧版本是没有此功能的。
 
-## 插件管理配置了错误的伪静态导致后台无法登录
+## 6. 插件管理配置了错误的伪静态导致后台无法登录
 
 如果在后台配置某一插件的伪静态错误时，导致后台完全无法打开时，你可以尝试使用http://www.yoursite.com/admin.php 进行登录后台，登录后再重新配置伪静态即可。
 
-## 如何启用后台登录验证码功能
+## 7. 如何启用后台登录验证码功能
 
 FastAdmin中的后台登录验证功能默认是关闭的，如果需要启用请修改`application/config.php`文件最下方的`login_captcha`，修改为`true`即可。
 
-## 如何在生成CRUD时生成回收站功能
+## 8. 如何在生成CRUD时生成回收站功能
 
 FastAdmin从`1.0.0.20190301_beta`版本开始已经支持自动生成回收站功能，如果需要生成回收站功能，请确保你的FastAdmin版本，其次确保你的数据表中存在`deletetime`这个字段，只需保证存在此字段，CRUD在生成时会自动生成回收站相关的前后端代码和文件。
 
-## 如何在控制器或模型中获取当前登录的管理员或登录用户信息
+## 9. 如何在控制器或模型中获取当前登录的管理员或登录用户信息
 
 在FastAdmin所提供的基类`Frontend`、`Backend`、`Api`中都有提供获取当前管理员或登录用户的信息方法
 
@@ -71,17 +71,17 @@ $auth = \app\common\library\Auth::install();
 $user = $auth->getUser();
 ```
 
-## 安装后提示控制器不存在:E或控制器不存在:N
+## 10. 安装后提示控制器不存在:E或控制器不存在:N
 
 出现这种情况一般是由于Web服务器的PATH_INFO未配置正确，导致服务器接收到了错误的PATH_INFO值，请检查你的PATH_INFO并修复后再重试
 
-## FastAdmin的数据库SQL文件在哪里
+## 11. FastAdmin的数据库SQL文件在哪里
 
 FastAdmin在安装时会自动创建数据库和数据表,免除了你手动创建数据库和导入数据库的烦恼。
 但很多时候我们需要构造自己的安装SQL，这就需要修改安装SQL文件。
 FastAdmin的数据库安装文件保存在 [application/admin/command/Install/fastadmin.sql](https://gitee.com/karson/fastadmin/raw/master/application/admin/command/Install/fastadmin.sql)
 
-## 如何修改后台默认皮肤
+## 12. 如何修改后台默认皮肤
 
 为了进一步提升加载速度，后台默认启用了绿色主题的皮肤，如何修改其它皮肤呢？
 
@@ -114,25 +114,25 @@ FastAdmin的数据库安装文件保存在 [application/admin/command/Install/fa
 3. 最后修改`application/admin/views/index/index.html`中第6行，将`skin-green`换成你需要的颜色标识
 4. 注意生产环境还需要执行`php think min -m all -r all`才会生效
 
-## 为什么前台自己创建的控制器提示你没有权限访问
+## 13. 为什么前台自己创建的控制器提示你没有权限访问
 
 这是由于控制器的基类你肯定继承的是`Frontend`，`Frontend`基类有鉴权判断，有以下两种办法可以尝试
 
 1. 添加控制器的属性`$noNeedRight=["*"]`，表示无需再做鉴权
 2. 后台会员规则中添加相应的规则，再给对应的会员组赋予相应的权限即可
 
-## 为什么后台给管理员所在组分配了权限，管理员仍然提示没有权限访问
+## 14. 为什么后台给管理员所在组分配了权限，管理员仍然提示没有权限访问
 
 如果是你自己添加的控制器，可以使用一键生成菜单命令(php think menu -c 控制器名)来生成菜单，如果你是手动添加的规则菜单，权限规则必须细化到控制器的方法才可以。
 
-## php think install报不是内部或外部命令
+## 15. php think install报不是内部或外部命令
 
 这是由于php.exe文件所在目录未加入到PATH环境变量导致的
 
 找到`php.exe`文件所在的目录，将该目录加入到系统PATH环境变量中后，重启CMD即可解决
 
 
-## php think install报command not found
+## 16. php think install报command not found
 
 这是由于在Linux环境下未找到php的脚本程序
 
@@ -140,16 +140,17 @@ FastAdmin的数据库安装文件保存在 [application/admin/command/Install/fa
 1. 找到php脚本程序所在的目录，加入到PATH环境变量中去，使用`export PATH=$PATH:php脚本程序所在目录`
 2. 找到php脚本程序文件，使用`ln -s php脚本程序文件 /usr/bin/php`
 
-## 安装后访问后台和会员中心都只显示首页
+## 17. 安装后访问后台和会员中心都只显示首页
 
 这是由于伪静态没有生效或错误导致的。请参考下方的Apache和Nginx伪静态配置
 
-## 安装后只能访问首页，其它页均报no input file specified
+## 18. 安装后只能访问首页，其它页均报no input file specified
 
 这是由于伪静态没有生效或错误导致的。
 
 这种情况一般在Apache下伪静态不工作的情况下出现，
 首先确保已经启用Apache的伪静态，确保目录已经配置好权限，如下面的Directory配置
+
 ``` ini
 <VirtualHost *:80>
     DocumentRoot "/Users/Karson/Project/fastadmin/public"
@@ -178,7 +179,7 @@ RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1]
 ```
 
 
-## 安装后只能访问首页，其它页均报404 page not found
+## 19. 安装后只能访问首页，其它页均报404 page not found
 
 这是由于伪静态未配置或没有生效导致的。
 
@@ -218,7 +219,7 @@ server {
 如果你使用的是 lnmp.org 的一键安装LNMP环境，
 请查阅 https://lnmp.org/faq/lnmp-vhost-add-howto.html#rewrite 的伪静态配置
 
-## composer install时无法下载package
+## 20. composer install时无法下载package
 
 这是由于composer默认配置是国外的源，如遇网络故障则会导致无法下载
 
@@ -244,7 +245,7 @@ composer config repo.packagist composer https://packagist.laravel-china.org
 感谢：https://packagist.laravel-china.org
 
 
-## 如何修改或禁用左侧菜单栏的角标
+## 21. 如何修改或禁用左侧菜单栏的角标
 
 FastAdmin后台左侧菜单栏有彩色的小角标，这一般用于通知和提醒操作，在后台开发时是非常方便的一个小功能，如何修改和禁用它呢？
 找到`/application/admin/controller/Index.php`中的index方法，其中有一段
@@ -285,11 +286,11 @@ top.window.Backend.api.sidebar({
 });
 ```
 
-## 后台上传文件时提示HTTP Error.(code:-200)错误
+## 22. 后台上传文件时提示HTTP Error.(code:-200)错误
 
 在后台上传文件时如果遇到-200错误，首先请开启调试模式，然后请使用谷歌浏览器的开发者工具，按F12，切换到`Network`，看具体的错误信息。
 
-## 在Windows下如何压缩打包JS和CSS
+## 23. 在Windows下如何压缩打包JS和CSS
 
 在FastAdmin中压缩打包JS和CSS文件需要NodeJS的支持
 在Windows下需要手动配置Node的可执行文件,请修改`application/admin/command/Min.php`中`$nodeExec`的值
@@ -297,14 +298,14 @@ top.window.Backend.api.sidebar({
 
 
 
-## 提示你所浏览的页面暂时无法访问
+## 24. 提示你所浏览的页面暂时无法访问
 
 如果我们在FastAdmin开发过程中遇到此错误，说明我们`application/config.php`中的`app_debug`是关闭的，必须开启`app_debug`为`true`才可以显示出详细的错误信息。如果开启`app_debug`仍然显示不出详细错误，请确保`php.ini`中的`display_error`为开启状态。
 
 
 
 
-## 提示未知的数据格式或网络错误
+## 25. 提示未知的数据格式或网络错误
 
 很多时候都有可能遇到提示未知的数据格式或网络错误这个提示，产生这个错误的原因一般来说都是服务端报错，导致返回的数据不是JSON格式或直接未返回，如下图
 
@@ -320,7 +321,7 @@ top.window.Backend.api.sidebar({
 
 FastAdmin建议运行在PHP5.5及以上版本，因此如果提示网络错误请检查你的PHP是否低于该版本
 
-## 安装时提示无法写入application/database.php
+## 26. 安装时提示无法写入application/database.php
 
 造成此问题的原因通常有几下两种情况
 
@@ -348,7 +349,7 @@ FastAdmin建议运行在PHP5.5及以上版本，因此如果提示网络错误�
 3. 如果使用的是`宝塔面板`，请直接在`网站`->`配置`->`网站目录`中修改`运行目录`为`public`目录
 ​
 
-## 如何将静态资源采用CDN方式部署到第三方云存储
+## 27. 如何将静态资源采用CDN方式部署到第三方云存储
 
 FastAdmin可以将静态的资源部署到[又拍云](https://www.fastadmin.net/store/upyun.html)、[七牛云](https://www.fastadmin.net/store/qiniu.html)或[阿里OSS](https://www.fastadmin.net/store/alioss.html)，可大大的加快网站的访问。
 默认FastAdmin的静态资源是不采用CDN部署的，如果需要启用，需要修改以下两个文件的配置

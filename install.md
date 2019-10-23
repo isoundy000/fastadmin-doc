@@ -51,7 +51,7 @@ Less (可选,用于编辑less文件,如果你需要增改css样式,最好安装�
 6. 如果提示`找不到fastadmin.fa_admin`表或表不存在，请检查你的MySQL是否开启了支持`innodb`。
 7. 如果在Linux环境中使用的是root账户，`bower install`执行出错，请尝试添加上`--allow-root`参数
 8. 如果访问后台右侧空白，请检查资源是否下载完整，可使用`bower install`多试两次或下载资源包覆盖
-9. 如果`composer install`失败，请尝试在命令行进行切换配置到国内源，命令如下`composer config -g repo.packagist composer https://packagist.laravel-china.org`
+9. 如果`composer install`失败，请尝试在命令行进行切换配置到国内源，命令如下`composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/`
 
 
 
